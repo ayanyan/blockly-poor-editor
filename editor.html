@@ -831,8 +831,11 @@
   workspace.addChangeListener(function () {
     generateCodes(workspace);
   });
-  Blockly.Xml.domToWorkspace(document.getElementById('initBlocks'), workspace);
+  workspace.addChangeListener(function () {
+    autoSave(workspace);
+  });
   var myInterpreter = null;
+  autoLoad(workspace);
   </script>
 
  </body>

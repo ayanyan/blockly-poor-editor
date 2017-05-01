@@ -135,6 +135,60 @@ function stepCode(myInterpreter, workspace) {
     }
 }
 
+function autoSave(workspace) {
+    putCookie('blocks', document.getElementById('xmlArea').value, 180);
+}
+
+function autoLoad(workspace) {
+    xml = getCookie('blocks');
+    if (xml) {
+        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
+    } else {
+        Blockly.Xml.domToWorkspace(document.getElementById('initBlocks'), workspace);
+    }
+}
+
+function putCookie(key, value, days) {
+    if (! days) { days = 1; }
+    var expires = (days * 24 * 60 * 60).toString();
+    var path = '/blockly';
+    document.cookie =
+        encodeURIComponent(key) + "=" + encodeURIComponent(value) + "; " +
+        'max-age=' + expires + '; ' +
+        'path=' + path + ';';
+}
+
+function getCookie(key) {
+    var name = encodeURIComponent(key) + "=";
+    var value = '';
+    var allCookies = document.cookie.split(';');
+    for (var i = 0; i < allCookies.length; i++) {
+        var cookie = allCookies[i];
+        while (cookie.charAt(0) == ' ') {
+            cookie = cookie.substring(1);
+        }
+        if (cookie.indexOf(name) == 0) {
+            value = cookie.substring(name.length, cookie.length);
+        }
+    }
+    while (value.charAt(0) == ' ') {
+        value = value.substring(1);
+    }
+    return decodeURIComponent(value);
+}
+
+function checkCookie() {
+    var user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            setCookie("username", user, 365);
+        }
+    }
+}
+
 function sleep(t) {
     var start = new Date().getTime();
     for (var i = 0; i < 1e7; i++) {
@@ -158,7 +212,7 @@ function filename(type) {
     case 'py':
         prefix = 'Python-'; ext = '.py';
         break;
-    };
+    }
     var date = new Date();
     return prefix +
         date.getFullYear().toString() +
@@ -183,6 +237,6 @@ function contentType(type) {
     case 'py':
         ctype = 'application/python';
         break;
-    };
+    }
     return ctype;
 }
