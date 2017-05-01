@@ -151,7 +151,7 @@ function autoLoad(workspace) {
 function putCookie(key, value, days) {
     if (! days) { days = 1; }
     var expires = (days * 24 * 60 * 60).toString();
-    var path = '/blockly';
+    var path = '/';
     document.cookie =
         encodeURIComponent(key) + "=" + encodeURIComponent(value) + "; " +
         'max-age=' + expires + '; ' +
