@@ -1,0 +1,76 @@
+/* Base */
+html, body {
+ height: 100%;
+}
+body {
+ background-color: #fff;
+ font-family: sans-serif;
+ margin: 0;
+ overflow: hidden;
+}
+table {
+ border-collapse: collapse;
+ margin: 0;
+ padding: 0;
+ border: none;
+}
+td, th {
+ padding: 0;
+ vertical-align: top;
+ /* border: 2px solid #000; */
+}
+textarea {
+ font-size: large;
+ font-family: monospace;
+}
+
+.farSide {
+ text-align: right;
+}
+
+/* Buttons */
+button {
+ font-size: large;
+ padding: 1px 10px;
+ margin: 1px 5px;
+ border-radius: 4px;
+ border: 1px solid #ddd;
+ background-color: #eee;
+ color: #000;
+}
+button.primary {
+ border: 1px solid #dd4b39;
+ background-color: #dd4b39;
+ color: #fff;
+}
+button.disabled {
+ color: #888;
+}
+button:active {
+ border: 1px solid #888 !important;
+}
+button:hover {
+ box-shadow: 2px 2px 5px #888;
+}
+
+#languageMenu {
+ vertical-align: top;
+ margin-top: 15px;
+ margin-right: 15px;
+}
+
+/* Pane */
+#sandbox {
+ width: 100%;
+ height: 100%;
+}
+#blocklyPane, #jsPane, #xmlPane {
+ height: 100%;
+}
+#blocklyDiv, #jsCode, #xmlArea {
+ width: 100%;
+ height: 100%;
+}
+#jsPane, #xmlPane {
+ display: none;
+}
