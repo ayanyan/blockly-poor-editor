@@ -1,3 +1,5 @@
+var useFileSaver = true;
+
 Blockly.JavaScript.addReservedWords('code');
 Blockly.JavaScript.addReservedWords('highlightBlock');
 
@@ -28,13 +30,17 @@ function runCode(workspace) {
 
 function downloadCode(id, type) {
     var text = document.getElementById(id).value;
-    var link = document.getElementById('saveLink');
     var blob = new Blob([text], {type: contentType(type)});
     var url = URL.createObjectURL(blob);
-    link.href = url;
-    link.download = filename(type);
-    link.target = '_blank';
-    saveAs(blob, filename(type));
+    if (useFileSaver) {
+        saveAs(blob, filename(type));
+    } else {
+        var link = document.getElementById('saveLink');
+        link.href = url;
+        link.download = filename(type);
+        link.target = '_blank';
+        link.click();
+    }
     URL.revokeObjectURL(url);
 }
 
@@ -43,12 +49,14 @@ function saveBlocks(workspace) {
     downloadCode('xmlArea', 'xml');
 }
 
+function clearBlocks(workspace) {
+    workspace.clear();
+}
+
 function loadBlocks(workspace) {
-    var xmlElement = document.getElementById('xmlArea');
     var fileElement = document.getElementById('file');
     var reader = new FileReader();
     reader.addEventListener('load', function() {
-        workspace.clear();
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(reader.result), workspace);
     });
     reader.readAsText(fileElement.files[0], 'UTF-8');
