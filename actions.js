@@ -161,32 +161,20 @@ function putCookie(key, value, days) {
 function getCookie(key) {
     var name = encodeURIComponent(key) + "=";
     var value = '';
-    var allCookies = document.cookie.split(';');
-    for (var i = 0; i < allCookies.length; i++) {
-        var cookie = allCookies[i];
-        while (cookie.charAt(0) == ' ') {
-            cookie = cookie.substring(1);
+    var allPieces = document.cookie.split(';');
+    for (var i = 0; i < allPieces.length; i++) {
+        var piece = allPieces[i];
+        while (piece.charAt(0) == ' ') {
+            piece = piece.substring(1);
         }
-        if (cookie.indexOf(name) == 0) {
-            value = cookie.substring(name.length, cookie.length);
+        if (piece.indexOf(name) == 0) {
+            value = piece.substring(name.length, piece.length);
         }
     }
     while (value.charAt(0) == ' ') {
         value = value.substring(1);
     }
     return decodeURIComponent(value);
-}
-
-function checkCookie() {
-    var user = getCookie("username");
-    if (user != "") {
-        alert("Welcome again " + user);
-    } else {
-        user = prompt("Please enter your name:", "");
-        if (user != "" && user != null) {
-            setCookie("username", user, 365);
-        }
-    }
 }
 
 function sleep(t) {

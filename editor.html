@@ -831,11 +831,11 @@
   workspace.addChangeListener(function () {
     generateCodes(workspace);
   });
+  autoLoad(workspace);
   workspace.addChangeListener(function () {
     autoSave(workspace);
   });
   var myInterpreter = null;
-  autoLoad(workspace);
   </script>
 
  </body>
