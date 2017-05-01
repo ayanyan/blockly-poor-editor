@@ -152,18 +152,10 @@
      <field name="MODE">SET</field>
      <field name="WHERE">FROM_START</field>
      <value name="LIST">
-      <shadow type="variables_get"><field name="VAR">list</field></shadow>
+      <block type="variables_get"><field name="VAR">list</field></block>
      </value>
      <value name="AT">
       <shadow type="math_number"><field name="NUM">1</field></shadow>
-     </value>
-    </block>
-    <block type="lists_getIndex">
-     <mutation statement="true" at="false"></mutation>
-     <field name="MODE">REMOVE</field>
-     <field name="WHERE">FIRST</field>
-     <value name="VALUE">
-      <shadow type="variables_get"><field name="VAR">list</field></shadow>
      </value>
     </block>
     <block type="lists_setIndex">
@@ -171,8 +163,22 @@
      <field name="MODE">INSERT</field>
      <field name="WHERE">FIRST</field>
      <value name="LIST">
+      <block type="variables_get"><field name="VAR">list</field></block>
+     </value>
+    </block>
+    <block type="lists_getIndex">
+     <mutation statement="true" at="false"></mutation>
+     <field name="MODE">REMOVE</field>
+     <field name="WHERE">FIRST</field>
+     <value name="VALUE">
+      <block type="variables_get"><field name="VAR">list</field></block>
+     </value>
+    </block>
+    <block type="lists_indexOf">
+     <value name="VALUE">
       <shadow type="variables_get"><field name="VAR">list</field></shadow>
      </value>
+     <field name="END">FIRST</field>
     </block>
     <block type="lists_split">
      <field name="MODE">SPLIT</field>
@@ -473,6 +479,114 @@
             <value name="LIST">
              <block type="variables_get"><field name="VAR">answer</field></block>
             </value>
+            <value name="TO">
+            </value>
+           </block>
+          </statement>
+         </block>
+        </next>
+       </block>
+      </next>
+     </block>
+    </category>
+    <category name="Eratosthenes">
+     <block type="variables_set">
+      <field name="VAR">j</field>
+      <value name="VALUE">
+       <block type="math_number"><field name="NUM">1</field></block>
+      </value>
+      <next>
+       <block type="variables_set">
+        <field name="VAR">p</field>
+        <value name="VALUE">
+         <block type="lists_getIndex">
+          <field name="MODE">GET</field>
+          <field name="WHERE">FROM_START</field>
+          <value name="VALUE">
+           <block type="variables_get"><field name="VAR">answer</field></block>
+          </value>
+          <value name="AT">
+           <block type="variables_get"><field name="VAR">j</field></block>
+          </value>
+         </block>
+        </value>
+        <next>
+         <block type="controls_whileUntil">
+          <field name="MODE">WHILE</field>
+          <value name="BOOL">
+           <block type="logic_compare">
+            <field name="OP">LTE</field>
+            <value name="A">
+             <block type="variables_get"><field name="VAR">p</field></block>
+            </value>
+           </block>
+          </value>
+          <statement name="DO">
+           <block type="controls_for">
+            <field name="VAR">i</field>
+            <value name="FROM">
+             <block type="lists_length">
+              <value name="VALUE">
+               <block type="variables_get"><field name="VAR">answer</field></block>
+              </value>
+             </block>
+            </value>
+            <value name="TO">
+            </value>
+            <value name="BY">
+             <block type="math_number"><field name="NUM">1</field></block>
+            </value>
+            <statement name="DO">
+             <block type="controls_if">
+              <statement name="DO0">
+               <block type="lists_getIndex">
+                <mutation statement="true" at="true"></mutation>
+                <field name="MODE">REMOVE</field>
+                <field name="WHERE">FROM_START</field>
+                <value name="VALUE">
+                 <block type="variables_get"><field name="VAR">answer</field></block>
+                </value>
+                <value name="AT">
+                 <block type="variables_get"><field name="VAR">i</field></block>
+                </value>
+               </block>
+              </statement>
+             </block>
+            </statement>
+            <next>
+             <block type="variables_set">
+              <field name="VAR">j</field>
+              <value name="VALUE">
+               <block type="math_arithmetic">
+                <field name="OP">ADD</field>
+                <value name="A">
+                 <block type="variables_get"><field name="VAR">j</field></block>
+                </value>
+                <value name="B">
+                 <block type="math_number"><field name="NUM">1</field></block>
+                </value>
+               </block>
+              </value>
+              <next>
+               <block type="variables_set">
+                <field name="VAR">p</field>
+                <value name="VALUE">
+                 <block type="lists_getIndex">
+                  <mutation at="true"></mutation>
+                  <field name="MODE">GET</field>
+                  <field name="WHERE">FROM_START</field>
+                  <value name="VALUE">
+                   <block type="variables_get"><field name="VAR">answer</field></block>
+                  </value>
+                  <value name="AT">
+                   <block type="variables_get"><field name="VAR">j</field></block>
+                  </value>
+                 </block>
+                </value>
+               </block>
+              </next>
+             </block>
+            </next>
            </block>
           </statement>
          </block>
@@ -595,6 +709,87 @@
        </block>
       </next>
      </block>
+     <block type="lists_create_with">
+      <mutation items="26"></mutation>
+      <value name="ADD0">
+       <block type="text"><field name="TEXT">a</field></block>
+      </value>
+      <value name="ADD1">
+       <block type="text"><field name="TEXT">b</field></block>
+      </value>
+      <value name="ADD2">
+       <block type="text"><field name="TEXT">c</field></block>
+      </value>
+      <value name="ADD3">
+       <block type="text"><field name="TEXT">d</field></block>
+      </value>
+      <value name="ADD4">
+       <block type="text"><field name="TEXT">e</field></block>
+      </value>
+      <value name="ADD5">
+       <block type="text"><field name="TEXT">f</field></block>
+      </value>
+      <value name="ADD6">
+       <block type="text"><field name="TEXT">g</field></block>
+      </value>
+      <value name="ADD7">
+       <block type="text"><field name="TEXT">h</field></block>
+      </value>
+      <value name="ADD8">
+       <block type="text"><field name="TEXT">i</field></block>
+      </value>
+      <value name="ADD9">
+       <block type="text"><field name="TEXT">j</field></block>
+      </value>
+      <value name="ADD10">
+       <block type="text"><field name="TEXT">k</field></block>
+      </value>
+      <value name="ADD11">
+       <block type="text"><field name="TEXT">l</field></block>
+      </value>
+      <value name="ADD12">
+       <block type="text"><field name="TEXT">m</field></block>
+      </value>
+      <value name="ADD13">
+       <block type="text"><field name="TEXT">n</field></block>
+      </value>
+      <value name="ADD14">
+       <block type="text"><field name="TEXT">o</field></block>
+      </value>
+      <value name="ADD15">
+       <block type="text"><field name="TEXT">p</field></block>
+      </value>
+      <value name="ADD16">
+       <block type="text"><field name="TEXT">q</field></block>
+      </value>
+      <value name="ADD17">
+       <block type="text"><field name="TEXT">r</field></block>
+      </value>
+      <value name="ADD18">
+       <block type="text"><field name="TEXT">s</field></block>
+      </value>
+      <value name="ADD19">
+       <block type="text"><field name="TEXT">t</field></block>
+      </value>
+      <value name="ADD20">
+       <block type="text"><field name="TEXT">u</field></block>
+      </value>
+      <value name="ADD21">
+       <block type="text"><field name="TEXT">v</field></block>
+      </value>
+      <value name="ADD22">
+       <block type="text"><field name="TEXT">w</field></block>
+      </value>
+      <value name="ADD23">
+       <block type="text"><field name="TEXT">x</field></block>
+      </value>
+      <value name="ADD24">
+       <block type="text"><field name="TEXT">y</field></block>
+      </value>
+      <value name="ADD25">
+       <block type="text"><field name="TEXT">z</field></block>
+      </value>
+     </block>
     </category>
    </category>
   </xml>
@@ -630,6 +825,8 @@
             snap: true},
      media: 'blockly/media/',
      trashcan: true,
+     zoom: {controls: true,
+            wheel: true},
      toolbox: document.getElementById('toolbox')});
   workspace.addChangeListener(function () {
     generateCodes(workspace);
