@@ -98,7 +98,6 @@ function parseCode(workspace) {
     highlightBlock = function (id) {
         highlightPause = true;
         workspace.highlightBlock(id);
-        window.alert('id: '+id);
     }
     Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
     var code = Blockly.JavaScript.workspaceToCode(workspace);
