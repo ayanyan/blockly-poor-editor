@@ -24,7 +24,7 @@ function runCode(workspace) {
             window.alert('Finally, answer is ' + answer);
         }
     } catch (e) {
-        alert(e);
+        window.alert(e);
     }
 }
 
@@ -50,8 +50,10 @@ function saveBlocks(workspace) {
 }
 
 function clearBlocks(workspace) {
-    workspace.clear();
-    Blockly.Xml.domToWorkspace(document.getElementById('initBlocks'), workspace);
+    if (confirm("Really clear all blocks?")) {
+        workspace.clear();
+        Blockly.Xml.domToWorkspace(document.getElementById('initBlocks'), workspace);
+    }
 }
 
 function loadBlocks(workspace) {
@@ -138,15 +140,29 @@ function stepCode(myInterpreter, workspace) {
 
 function autoSave(workspace) {
     var xml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
-    localStorage.setItem('blocks', xml);
+    try {
+        if (typeof(Storage) !== 'undefined') {
+            localStorage.setItem('blocks', xml);
+        } else {
+            putCookie('blocks', xml, 180);
+        }
+    } finally {}
 }
 
 function autoLoad(workspace) {
-    var xml = localStorage.getItem('blocks');
-    if (xml) {
-        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
-    } else {
-        Blockly.Xml.domToWorkspace(document.getElementById('initBlocks'), workspace);
+    var xml = null;
+    try {
+        if (typeof(Storage) !== "undefined") {
+            xml = localStorage.getItem('blocks');
+        } else {
+            xml = getCookie('blocks');
+        }
+    } finally {
+        if (xml) {
+            Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
+        } else {
+            Blockly.Xml.domToWorkspace(document.getElementById('initBlocks'), workspace);
+        }
     }
 }
 

@@ -598,7 +598,7 @@
     <category name="FizzBuzz">
      <block type="procedures_defreturn">
       <mutation>
-       <arg name="x"></arg>
+       <arg name="input"></arg>
       </mutation>
       <field name="NAME">fizzbuzz</field>
       <comment>Transform a number.</comment>
@@ -607,16 +607,16 @@
         <mutation elseif="2" else="1"></mutation>
         <statement name="ELSE">
          <block type="variables_set">
-          <field name="VAR">s</field>
+          <field name="VAR">answer</field>
           <value name="VALUE">
-           <block type="variables_get"><field name="VAR">x</field></block>
+           <block type="variables_get"><field name="VAR">input</field></block>
           </value>
          </block>
         </statement>
        </block>
       </statement>
       <value name="RETURN">
-       <block type="variables_get"><field name="VAR">s</field></block>
+       <block type="variables_get"><field name="VAR">answer</field></block>
       </value>
      </block>
      <block type="controls_for">
@@ -635,7 +635,7 @@
         <value name="TEXT">
          <block type="procedures_callreturn">
           <mutation name="fizzbuzz">
-           <arg name="x"></arg>
+           <arg name="input"></arg>
           </mutation>
          </block>
         </value>
