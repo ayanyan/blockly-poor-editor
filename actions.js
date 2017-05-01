@@ -51,6 +51,7 @@ function saveBlocks(workspace) {
 
 function clearBlocks(workspace) {
     workspace.clear();
+    Blockly.Xml.domToWorkspace(document.getElementById('initBlocks'), workspace);
 }
 
 function loadBlocks(workspace) {
@@ -136,11 +137,12 @@ function stepCode(myInterpreter, workspace) {
 }
 
 function autoSave(workspace) {
-    putCookie('blocks', document.getElementById('xmlArea').value, 180);
+    var xml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
+    localStorage.setItem('blocks', xml);
 }
 
 function autoLoad(workspace) {
-    xml = getCookie('blocks');
+    var xml = localStorage.getItem('blocks');
     if (xml) {
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
     } else {
