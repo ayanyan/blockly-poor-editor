@@ -34,7 +34,7 @@ function downloadCode(id, type) {
     link.href = url;
     link.download = filename(type);
     link.target = '_blank';
-    link.click();
+    saveAs(blob, filename(type));
     URL.revokeObjectURL(url);
 }
 
