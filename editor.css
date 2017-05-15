@@ -23,13 +23,13 @@ textarea {
  font-size: large;
  font-family: monospace;
 }
-
 .farSide {
  text-align: right;
 }
 
 /* Buttons */
-button {
+button, .button {
+ vertical-align: bottom;
  font-size: large;
  padding: 1px 10px;
  margin: 1px 5px;
@@ -52,11 +52,16 @@ button:active {
 button:hover {
  box-shadow: 2px 2px 5px #888;
 }
-
 #languageMenu {
  vertical-align: top;
  margin-top: 15px;
  margin-right: 15px;
+}
+
+/* SweetAlert */
+.sweet-alert {
+ /* word-wrap: break-word;
+    overflow-wrap: break-word; */
 }
 
 /* Pane */
@@ -72,5 +77,10 @@ button:hover {
  height: 100%;
 }
 #jsPane, #xmlPane {
+ display: none;
+}
+
+/* Background */
+#invisibleArea, #saveLink {
  display: none;
 }

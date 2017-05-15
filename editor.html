@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="google" value="notranslate">
   <title>Blockly Demonstration</title>
-  <link rel="stylesheet" href="editor.css">
   <script src="blockly/blockly_compressed.js"></script>
   <script src="blockly/blocks_compressed.js"></script>
   <script src="blockly/msg/js/en.js"></script>
@@ -12,23 +11,28 @@
   <script src="blockly/python_compressed.js"></script>
   <script src="jsint/acorn_interpreter.js"></script>
   <script src="filesaver/FileSaver.js"></script>
+  <script src="blocks.js"></script>
+  <script src="sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css">
   <script src="actions.js"></script>
+  <link rel="stylesheet" href="editor.css">
  </head>
  <body>
 
   <table id="sandbox">
    <tr id="menu">
     <td>
-     <button onclick="showPane('blocklyPane');">Blockly</button>
-     <button onclick="showPane('jsPane');">JavaScript</button>
-     <button onclick="showPane('xmlPane');">XML</button>
+     <button onclick="this.blur();showPane('blocklyPane');">Blockly</button>
+     <button onclick="this.blur();showPane('jsPane');">JavaScript</button>
+     <button onclick="this.blur();showPane('xmlPane');">XML</button>
+     <textarea id="invisibleArea" class="button" rows="1" cols="12" style="display:none;">answer</textarea>
     </td>
     <td class="farSide">
-     <button class="primary" title="Run the code." onclick="runCode(workspace);">Run</button>
-     <button title="Download the JavaScript code." onclick="downloadCode('jsCode', 'js');">Export</button>
-     <button title="Save the blocks as XML." onclick="saveBlocks(workspace);">Save</button>
-     <button title="Remove all blocks." onclick="clearBlocks(workspace);">Reset</button>
-     <button title="Load the blocks from XML." onclick="document.getElementById('file').click();">Load</button>
+     <button class="primary" title="Run the code." onclick="this.blur();runCode(workspace);">Run</button>
+     <button title="Download the JavaScript code." onclick="this.blur();downloadCode('jsCode','js');">Export</button>
+     <button title="Save the blocks as XML." onclick="this.blur();saveBlocks(workspace);">Save</button>
+     <button title="Remove all blocks." onclick="this.blur();clearBlocks(workspace);">Reset</button>
+     <button title="Load the blocks from XML." onclick="this.blur();document.getElementById('file').click();">Load</button>
      <input id="file" type="file" onchange="loadBlocks(workspace);" style="display:none;" />
      <a id="saveLink" style="display:none;">dummy</a>
     </td>
@@ -52,12 +56,9 @@
     </block>
    </category>
    <category name="Loops" colour="120">
-    <block type="controls_whileUntil"></block>
-    <!-- <block type="controls_repeat_ext">
-         <value name="TIMES">
-         <block type="math_number"><field name="NUM">10</field></block>
-         </value>
-         </block> -->
+    <block type="controls_whileUntil">
+     <field name="MODE">UNTIL</field>
+    </block>
     <block type="controls_for">
      <field name="VAR">i</field>
      <value name="FROM">
@@ -106,11 +107,13 @@
     <!-- <block type="math_random_float"></block> -->
     <!-- <block type="logic_null"></block> -->
    </category>
-   <category name="Strings" colour="160">
+   <category name="Texts" colour="160">
     <block type="text"></block>
     <block type="text_join">
      <mutation items="2"></mutation>
     </block>
+    <block type="number_2_text"></block>
+    <block type="text_2_number"></block>
     <block type="text_length"></block>
     <block type="text_charAt">
      <value name="VALUE">
@@ -805,6 +808,7 @@
       <field name="VAR">input</field>
       <value name="VALUE">
        <block type="text_prompt_ext">
+        <mutation type="NUMBER"></mutation>
         <field name="TYPE">NUMBER</field>
         <value name="TEXT">
          <block type="text"><field name="TEXT">Please input your value</field></block>
