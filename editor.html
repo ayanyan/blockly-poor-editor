@@ -646,6 +646,38 @@
       </statement>
      </block>
     </category>
+    <category name="CountUp">
+     <block type="variables_set">
+      <field name="VAR">input</field>
+      <value name="VALUE">
+       <block type="lists_split">
+        <field name="MODE">SPLIT</field>
+        <value name="INPUT">
+         <shadow type="variables_get">
+          <field name="VAR">input</field>
+         </shadow>
+         <block type="text_prompt_ext">
+          <field name="TYPE">TEXT</field>
+          <value name="TEXT">
+           <block type="text"><field name="TEXT">Please input your value</field></block>
+          </value>
+         </block>
+        </value>
+        <value name="DELIM">
+         <block type="text"><field name="TEXT"></field></block>
+        </value>
+       </block>
+      </value>
+      <next>
+       <block type="controls_forEach">
+        <field name="VAR">x</field>
+        <value name="LIST">
+         <block type="variables_get"><field name="VAR">input</field></block>
+        </value>
+       </block>
+      </next>
+     </block>
+    </category>
     <category name="Crypt">
      <block type="procedures_defreturn">
       <mutation>
