@@ -203,12 +203,14 @@
     </block>
     <block type="lists_reverse" inline="false"></block>
     <block type="lists_sort" inline="false">
+     <mutation type="TEXT"></mutation>
      <field name="TYPE">TEXT</field>
      <field name="DIRECTION">1</field></block>
     </block>
    </category>
    <category name="Interaction" colour="160">
     <block type="text_prompt_ext">
+     <mutation type="NUMBER"></mutation>
      <field name="TYPE">NUMBER</field>
      <value name="TEXT">
       <block type="text"><field name="TEXT">Please input your value</field></block>
@@ -456,6 +458,7 @@
         <field name="VAR">input</field>
         <value name="VALUE">
          <block type="text_prompt_ext">
+          <mutation type="NUMBER"></mutation>
           <field name="TYPE">NUMBER</field>
           <value name="TEXT">
            <block type="text"><field name="TEXT">Please input your value</field></block>
@@ -650,6 +653,52 @@
      <block type="variables_set">
       <field name="VAR">input</field>
       <value name="VALUE">
+       <block type="text_prompt_ext">
+        <mutation type="TEXT"></mutation>
+        <field name="TYPE">TEXT</field>
+        <value name="TEXT">
+         <block type="text"><field name="TEXT">Please input your value</field></block>
+        </value>
+       </block>
+      </value>
+      <next>
+       <block type="variables_set">
+        <field name="VAR">long</field>
+        <value name="VALUE">
+         <block type="text_length">
+          <value name="VALUE">
+           <block type="variables_get"><field name="VAR">input</field></block>
+          </value>
+         </block>
+        </value>
+        <next>
+         <block type="variables_set">
+          <field name="VAR">short</field>
+          <value name="VALUE">
+           <block type="text_length">
+            <value name="VALUE">
+             <block type="text_replace">
+              <value name="FROM">
+               <block type="text"><field name="TEXT">e</field></block>
+              </value>
+              <value name="TO">
+               <block type="text"><field name="TEXT"></field></block>
+              </value>
+              <value name="TEXT">
+               <block type="variables_get"><field name="VAR">input</field></block>
+              </value>
+             </block>
+            </value>
+           </block>
+          </value>
+         </block>
+        </next>
+       </block>
+      </next>
+     </block>
+     <block type="variables_set">
+      <field name="VAR">input</field>
+      <value name="VALUE">
        <block type="lists_split">
         <field name="MODE">SPLIT</field>
         <value name="INPUT">
@@ -657,6 +706,7 @@
           <field name="VAR">input</field>
          </shadow>
          <block type="text_prompt_ext">
+          <mutation type="TEXT"></mutation>
           <field name="TYPE">TEXT</field>
           <value name="TEXT">
            <block type="text"><field name="TEXT">Please input your value</field></block>
@@ -705,6 +755,7 @@
             <field name="VAR">input</field>
            </shadow>
            <block type="text_prompt_ext">
+            <mutation type="TEXT"></mutation>
             <field name="TYPE">TEXT</field>
             <value name="TEXT">
              <block type="text"><field name="TEXT">Please input your value</field></block>
