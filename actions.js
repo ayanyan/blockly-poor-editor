@@ -23,7 +23,7 @@ function runCode(workspace) {
     // in fact, workspace is not needed.
     var code = document.getElementById('jsCode').value;
     try {
-        window.LoopTrap = 100000;
+        window.LoopTrap = 1000000;
         var answer = null;
         eval(code);
         if (answer != null) {
