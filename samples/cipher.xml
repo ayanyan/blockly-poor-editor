@@ -1,0 +1,198 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="variables_set" id="rqo)IGeNkT/8+Dwl8x)l" x="13" y="13">
+    <field name="VAR">alphabet</field>
+    <value name="VALUE">
+      <block type="lists_split" id="EM!8~Jrj8j+M[?tkk4}V">
+        <mutation mode="SPLIT"></mutation>
+        <field name="MODE">SPLIT</field>
+        <value name="INPUT">
+          <shadow type="variables_get" id="Q85INIfYE8Z}d^B#JyTm">
+            <field name="VAR">input</field>
+          </shadow>
+          <block type="text" id="8vBlFr-Zev1pH4xMq9^P">
+            <field name="TEXT">abcdefghijklmnopqrstuvwxyz</field>
+          </block>
+        </value>
+        <value name="DELIM">
+          <block type="text" id="#+eiVf#2])*n%t#5!J,=">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set" id="Rs_4(9-pHV;F-m#$SS8k">
+        <field name="VAR">key</field>
+        <value name="VALUE">
+          <block type="lists_split" id="@yK_%farhn4gzioP:(Br">
+            <mutation mode="SPLIT"></mutation>
+            <field name="MODE">SPLIT</field>
+            <value name="INPUT">
+              <shadow type="variables_get" id="Q85INIfYE8Z}d^B#JyTm">
+                <field name="VAR">input</field>
+              </shadow>
+              <block type="text" id="cZrirLb|Zxj#FNrzg/mc">
+                <field name="TEXT">PLUMBVEXDJACKQFROWZYTHINGS</field>
+              </block>
+            </value>
+            <value name="DELIM">
+              <block type="text" id="oR!gQoLw/sZ(X[kKi-DB">
+                <field name="TEXT"></field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="g/j/5|ew=wQoi$IdLY1b">
+            <field name="VAR">answer</field>
+            <value name="VALUE">
+              <block type="lists_create_empty" id="hltRGGcv_t^2?!FKQ/~A"></block>
+            </value>
+            <next>
+              <block type="variables_set" id="GU4!G{HC8RCWQ=iCvTh?">
+                <field name="VAR">input</field>
+                <value name="VALUE">
+                  <block type="lists_split" id="XOdf.JRou7g2iVbS)lbQ">
+                    <mutation mode="SPLIT"></mutation>
+                    <field name="MODE">SPLIT</field>
+                    <value name="INPUT">
+                      <shadow type="variables_get" id="3.*TFy[R%Yl!G#TnQo_8">
+                        <field name="VAR">input</field>
+                      </shadow>
+                      <block type="text_replace" id="2ajZOJAb;%+P,S`H]eHb">
+                        <value name="FROM">
+                          <shadow type="text" id="GC%fboAjuW!TS7FW!7TB">
+                            <field name="TEXT"> </field>
+                          </shadow>
+                        </value>
+                        <value name="TO">
+                          <shadow type="text" id=",(-c0ra;^n?`^#TOajTv">
+                            <field name="TEXT"></field>
+                          </shadow>
+                        </value>
+                        <value name="TEXT">
+                          <shadow type="variables_get" id="{mW~7.hJ7@E!d0D,pB*,">
+                            <field name="VAR">x</field>
+                          </shadow>
+                          <block type="text_prompt_ext" id="+T]HcXL89st$mum?^(dz">
+                            <mutation type="TEXT"></mutation>
+                            <field name="TYPE">TEXT</field>
+                            <value name="TEXT">
+                              <block type="text" id="}qVXeT]GVZQFV_Wy^Sg1">
+                                <field name="TEXT">Please input your value</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="DELIM">
+                      <block type="text" id="RuH=Ch_Hl+GBq0n7Hj%5">
+                        <field name="TEXT"></field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_forEach" id="J+fE}~~pyA|Fex3@)fQV">
+                    <field name="VAR">x</field>
+                    <value name="LIST">
+                      <block type="variables_get" id="?P@XT@J(~MxsDt~eWwr(">
+                        <field name="VAR">input</field>
+                      </block>
+                    </value>
+                    <statement name="DO">
+                      <block type="lists_setIndex" id="_v,wH#a3O]mdn^@viQiC">
+                        <mutation at="false"></mutation>
+                        <field name="MODE">INSERT</field>
+                        <field name="WHERE">LAST</field>
+                        <value name="LIST">
+                          <block type="variables_get" id="zNP}X+IU=jQ)j{;z!])U">
+                            <field name="VAR">answer</field>
+                          </block>
+                        </value>
+                        <value name="TO">
+                          <block type="procedures_callreturn" id="Q08#n8-Iphd~_:MU$|zg">
+                            <mutation name="encode">
+                              <arg name="x"></arg>
+                            </mutation>
+                            <value name="ARG0">
+                              <block type="variables_get" id="~SiSS_ya.8b9afddG1F*">
+                                <field name="VAR">x</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="variables_set" id="))dn}_m.;B]sEB!1T+cy">
+                        <field name="VAR">answer</field>
+                        <value name="VALUE">
+                          <block type="lists_split" id="lDnWs48?];;Tapo-pq+Y">
+                            <mutation mode="JOIN"></mutation>
+                            <field name="MODE">JOIN</field>
+                            <value name="INPUT">
+                              <block type="variables_get" id="a^m/S9_#vmP}%E8*42DX">
+                                <field name="VAR">answer</field>
+                              </block>
+                            </value>
+                            <value name="DELIM">
+                              <block type="text" id="uO569yn`EoieT#$qo]eJ">
+                                <field name="TEXT"></field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="procedures_defreturn" id="qg4p0=@YE~^m,5YMUv|P" x="13" y="313">
+    <mutation>
+      <arg name="x"></arg>
+    </mutation>
+    <field name="NAME">encode</field>
+    <comment pinned="false" h="80" w="160">Transform a character to the encoded one.</comment>
+    <value name="RETURN">
+      <shadow type="variables_get" id="|Wap`c-HJ!.hk9;bRMf+">
+        <field name="VAR">x</field>
+      </shadow>
+      <block type="lists_getIndex" id="xhYqS/6ZYU_vWq9D$!*%">
+        <mutation statement="false" at="true"></mutation>
+        <field name="MODE">GET</field>
+        <field name="WHERE">FROM_START</field>
+        <value name="VALUE">
+          <shadow type="variables_get" id="x6$4mp@$qL8zQk%jo#2p">
+            <field name="VAR">key</field>
+          </shadow>
+        </value>
+        <value name="AT">
+          <shadow type="math_number" id="Kxid3a.i*bGI,uU]bT4n">
+            <field name="NUM">1</field>
+          </shadow>
+          <block type="lists_indexOf" id="vumuF4*$LDGj4vNKc!ku">
+            <field name="END">FIRST</field>
+            <value name="VALUE">
+              <shadow type="variables_get" id="hOYnJ0}k1mbrJ9k#(DU0">
+                <field name="VAR">alphabet</field>
+              </shadow>
+            </value>
+            <value name="FIND">
+              <block type="variables_get" id="cl8Twcuu7vwEcX6RW/UC">
+                <field name="VAR">x</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+</xml>

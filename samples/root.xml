@@ -1,0 +1,191 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="variables_set" id="aL*XzYK~i$W,!dL1H?7Z" x="13" y="13">
+    <field name="VAR">answer</field>
+    <value name="VALUE">
+      <block type="math_number" id="m4^smWX(9-jF0@CkCvoU">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set" id="]KM~O[P}F]V4%iodc`0O">
+        <field name="VAR">input</field>
+        <value name="VALUE">
+          <block type="text_prompt_ext" id="g|qN{V$@2w-SUP+(v(bf">
+            <mutation type="NUMBER"></mutation>
+            <field name="TYPE">NUMBER</field>
+            <value name="TEXT">
+              <block type="text" id="-1t~6uiFOiGZ#evG/X}0">
+                <field name="TEXT">小数点以下何桁ぐらいの精度で求めますか?</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="rB@tS*8fkP@=UV|.G8[e">
+            <field name="VAR">origin</field>
+            <value name="VALUE">
+              <block type="math_number" id="[I[Y{NTp8-9QA`2J};on">
+                <field name="NUM">3</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id=".KZP{6Nn*H{0y/@!g@NI">
+                <field name="VAR">base</field>
+                <value name="VALUE">
+                  <block type="math_number" id="9#z1=F0lt9KAAHC5-3tG">
+                    <field name="NUM">10</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="[E3_CfJ=}f_6s=DJm~qP">
+                    <field name="VAR">interval</field>
+                    <value name="VALUE">
+                      <block type="math_arithmetic" id="2k-;{Q{*8%BrcZ7d)HUx">
+                        <field name="OP">POWER</field>
+                        <value name="A">
+                          <block type="variables_get" id="3CU`ozZxw`8H}4)2[n8M">
+                            <field name="VAR">base</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_single" id="/n7.@5RGJ/~YU/~?GiI[">
+                            <field name="OP">NEG</field>
+                            <value name="NUM">
+                              <block type="variables_get" id="33/0nTp}#@~ug`5oJSVc">
+                                <field name="VAR">input</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="W:h$D74WQEUOJpdngJcl">
+                        <field name="VAR">upper</field>
+                        <value name="VALUE">
+                          <block type="variables_get" id="LWs.Pdrb}.okd!,(oW20">
+                            <field name="VAR">origin</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="controls_whileUntil" id="M32otq,H?A@@}Y5t)cfg">
+                            <field name="MODE">UNTIL</field>
+                            <value name="BOOL">
+                              <block type="logic_compare" id="BhUc[hBQ=jOPLb6OeV4Z">
+                                <field name="OP">LTE</field>
+                                <value name="A">
+                                  <block type="math_arithmetic" id="*DDq]$aMC:Ez/d/|Tp!#">
+                                    <field name="OP">MINUS</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="3BIfKi-Yb#~?:]}D@$,a">
+                                        <field name="VAR">upper</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="variables_get" id="O!a?M3=JUxLs%4Zl/lp)">
+                                        <field name="VAR">answer</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="variables_get" id="0cbUeXV`QW`Jp|w|J2Q?">
+                                    <field name="VAR">interval</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO">
+                              <block type="variables_set" id="6d,{0:^x]:a5R4rEKlH6">
+                                <field name="VAR">middle</field>
+                                <value name="VALUE">
+                                  <block type="math_arithmetic" id="oGoi8[@r-8xly3d)f4^#">
+                                    <field name="OP">DIVIDE</field>
+                                    <value name="A">
+                                      <block type="math_arithmetic" id="XcN4V.iEje21pd^}D_+v">
+                                        <field name="OP">ADD</field>
+                                        <value name="A">
+                                          <block type="variables_get" id="{cRRs0Q9SsAMF7v=.-jW">
+                                            <field name="VAR">answer</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="variables_get" id="9w(r6U]B/@/!C{a2f88a">
+                                            <field name="VAR">upper</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="math_number" id="VqG=4E(%`xgg%nY2~|Kn">
+                                        <field name="NUM">2</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="controls_if" id="@5xN~,kl-o1%zr4_n-k+">
+                                    <mutation else="1"></mutation>
+                                    <value name="IF0">
+                                      <block type="logic_compare" id="BeBN-GxkGi_v+M5m_D?6">
+                                        <field name="OP">LT</field>
+                                        <value name="A">
+                                          <block type="math_arithmetic" id="Hd]BF[5?[~d.%5ZyU@:p">
+                                            <field name="OP">POWER</field>
+                                            <value name="A">
+                                              <block type="variables_get" id="Q.,#d|fTEODOHjF3AaxC">
+                                                <field name="VAR">middle</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="math_number" id="tY*X)Xf4.Eeu_M7Fhlx(">
+                                                <field name="NUM">2</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="variables_get" id="Ie@T74]a5tZxq5+2ut^|">
+                                            <field name="VAR">origin</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO0">
+                                      <block type="variables_set" id="8!udjtxY5de[}W,N:V;d">
+                                        <field name="VAR">answer</field>
+                                        <value name="VALUE">
+                                          <block type="variables_get" id="|qVuaezwwTMpsg-@^`Sd">
+                                            <field name="VAR">middle</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                    <statement name="ELSE">
+                                      <block type="variables_set" id="U%eP-Sd`h`n;r.pQ,g[(">
+                                        <field name="VAR">upper</field>
+                                        <value name="VALUE">
+                                          <block type="variables_get" id="[W.DiDaJ.L/t3D[VWH8h">
+                                            <field name="VAR">middle</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

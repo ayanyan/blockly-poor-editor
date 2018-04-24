@@ -1,0 +1,300 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="variables_set" id="Y)%(S*b~GpJTR,a#MNCZ" x="12" y="12">
+    <field name="VAR">月の日数</field>
+    <value name="VALUE">
+      <block type="lists_create_with" id="sObs;o8vxe/kJj2mbSC0">
+        <mutation items="12"></mutation>
+        <value name="ADD0">
+          <block type="math_number" id="I}rw`jA)/.xa0%i,sVXG">
+            <field name="NUM">31</field>
+          </block>
+        </value>
+        <value name="ADD1">
+          <block type="math_number" id="*iydre01_FoGQe+vz?p!">
+            <field name="NUM">28</field>
+          </block>
+        </value>
+        <value name="ADD2">
+          <block type="math_number" id="~l6k?+WodI`^ZZ9DmsV~">
+            <field name="NUM">31</field>
+          </block>
+        </value>
+        <value name="ADD3">
+          <block type="math_number" id="#3Kj=~VXX(/Q*lONd~TH">
+            <field name="NUM">30</field>
+          </block>
+        </value>
+        <value name="ADD4">
+          <block type="math_number" id="5CjXZppf5Fv/6,|NoB)j">
+            <field name="NUM">31</field>
+          </block>
+        </value>
+        <value name="ADD5">
+          <block type="math_number" id="_IVB~1O,*[PjxSyesa^9">
+            <field name="NUM">30</field>
+          </block>
+        </value>
+        <value name="ADD6">
+          <block type="math_number" id="QS?pzil`lH-;Sc8`%|n|">
+            <field name="NUM">31</field>
+          </block>
+        </value>
+        <value name="ADD7">
+          <block type="math_number" id="/VzPRQ!,N|6JjcB.b/vV">
+            <field name="NUM">31</field>
+          </block>
+        </value>
+        <value name="ADD8">
+          <block type="math_number" id="-1jkS0E-TNpQ+MlR1pZO">
+            <field name="NUM">30</field>
+          </block>
+        </value>
+        <value name="ADD9">
+          <block type="math_number" id="g|4_o=/Kra_TsJnM!Nod">
+            <field name="NUM">31</field>
+          </block>
+        </value>
+        <value name="ADD10">
+          <block type="math_number" id="O?;p2xcqm:8x60EHnkE`">
+            <field name="NUM">30</field>
+          </block>
+        </value>
+        <value name="ADD11">
+          <block type="math_number" id="cz@#d;i=^*Nz$8$m)mAP">
+            <field name="NUM">31</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set" id="vp8j^26fz[^rXboOYElY">
+        <field name="VAR">月</field>
+        <value name="VALUE">
+          <block type="text_prompt_ext" id="t=FpU6H~dGU,/[1u0_zZ">
+            <mutation type="NUMBER"></mutation>
+            <field name="TYPE">NUMBER</field>
+            <value name="TEXT">
+              <block type="text" id="u/GU.Zsh{.`rgB[BeyvI">
+                <field name="TEXT">基準日は何月ですか?</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="4(3u7`$Qo.^r[O#wWw1v">
+            <field name="VAR">日</field>
+            <value name="VALUE">
+              <block type="text_prompt_ext" id="(R)U330P,d%j~=[)hPVJ">
+                <mutation type="NUMBER"></mutation>
+                <field name="TYPE">NUMBER</field>
+                <value name="TEXT">
+                  <block type="text" id="vP^ZS|d!swpRTlr-0~`p">
+                    <field name="TEXT">基準日は何日ですか?</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="9z5s;D0*`%}tvP#B*$I1">
+                <field name="VAR">何日目</field>
+                <value name="VALUE">
+                  <block type="text_prompt_ext" id="%@6`R%#.hk,{B4a3GL{r">
+                    <mutation type="NUMBER"></mutation>
+                    <field name="TYPE">NUMBER</field>
+                    <value name="TEXT">
+                      <block type="text" id="#_tSex`#Lw9Wq{0m!.:u">
+                        <field name="TEXT">基準日から数えて何日目の日付が知りたいですか?</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="]7*fLw^P#3EPPQrOkyJ8">
+                    <field name="VAR">日</field>
+                    <value name="VALUE">
+                      <block type="math_arithmetic" id="XtM#AZD]Akh|I1bRiIL%">
+                        <field name="OP">ADD</field>
+                        <value name="A">
+                          <block type="variables_get" id="mjuLV%UDy_SYL,nU?$Lx">
+                            <field name="VAR">日</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_arithmetic" id="]0=|dGF@|TA)Sed%?s[^">
+                            <field name="OP">MINUS</field>
+                            <value name="A">
+                              <block type="variables_get" id="m?4vFB*}kleV;:Yg`tWP">
+                                <field name="VAR">何日目</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="LI8m3RN#!TNrc?Ygo@UV">
+                                <field name="NUM">1</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="controls_whileUntil" id="%-nY%F.xz@Q?4=Gf?Y]i">
+                        <field name="MODE">UNTIL</field>
+                        <value name="BOOL">
+                          <block type="logic_compare" id="wpT[G93;~}yh^FQJMean">
+                            <field name="OP">LTE</field>
+                            <value name="A">
+                              <block type="variables_get" id="jaSfge!or}MDMz~d2I[X">
+                                <field name="VAR">日</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="lists_getIndex" id="U:yvG9dkXHwM8I+63!8^">
+                                <mutation statement="false" at="true"></mutation>
+                                <field name="MODE">GET</field>
+                                <field name="WHERE">FROM_START</field>
+                                <value name="VALUE">
+                                  <shadow type="variables_get" id="~26/m5{mmv9+nfs94DZ[">
+                                    <field name="VAR">月の日数</field>
+                                  </shadow>
+                                  <block type="variables_get" id="jzqo~r~^4qjiowoS5F_U">
+                                    <field name="VAR">月の日数</field>
+                                  </block>
+                                </value>
+                                <value name="AT">
+                                  <shadow type="math_number" id="OUdn*v+!{`xNxw|EH*R_">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                  <block type="variables_get" id="WpBYKiUl1%X)Abz]9SR#">
+                                    <field name="VAR">月</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO">
+                          <block type="variables_set" id="[r~2Na?GiJhAR$`Y~X*m">
+                            <field name="VAR">日</field>
+                            <value name="VALUE">
+                              <block type="math_arithmetic" id="o~)8f#uW/hxjaFs^1DIS">
+                                <field name="OP">MINUS</field>
+                                <value name="A">
+                                  <block type="variables_get" id="^i6dLX4(F|0IJDcx}}pv">
+                                    <field name="VAR">日</field>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="lists_getIndex" id="0MFrT`(zoY-^3#i4$h#`">
+                                    <mutation statement="false" at="true"></mutation>
+                                    <field name="MODE">GET</field>
+                                    <field name="WHERE">FROM_START</field>
+                                    <value name="VALUE">
+                                      <shadow type="variables_get" id="~26/m5{mmv9+nfs94DZ[">
+                                        <field name="VAR">月の日数</field>
+                                      </shadow>
+                                      <block type="variables_get" id="qn(k:tUX|RxH[=}.em_l">
+                                        <field name="VAR">月の日数</field>
+                                      </block>
+                                    </value>
+                                    <value name="AT">
+                                      <shadow type="math_number" id="OUdn*v+!{`xNxw|EH*R_">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="variables_get" id="osiPRvtsc94jRv+ZPw[D">
+                                        <field name="VAR">月</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="math_change" id="~;4qO0X(br?3V+m5*8_3">
+                                <field name="VAR">月</field>
+                                <value name="DELTA">
+                                  <shadow type="math_number" id="B/~3FB~;ylmBm,_Z?},{">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="controls_if" id="N2SY1s{0D2XXu@:@$,V#">
+                                    <value name="IF0">
+                                      <block type="logic_compare" id="Dwxn`pl{ObM3Ti/3K%HW">
+                                        <field name="OP">GT</field>
+                                        <value name="A">
+                                          <block type="variables_get" id="c2zgf@aAd=N(,ccH;9gM">
+                                            <field name="VAR">月</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="math_number" id="s5e)J`U=X(D/7$oBUu}9">
+                                            <field name="NUM">12</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO0">
+                                      <block type="math_change" id=".Xe=khY{.Tah3U1:v.1W">
+                                        <field name="VAR">月</field>
+                                        <value name="DELTA">
+                                          <shadow type="math_number" id=":7]f0bTu|Q?t@_51;`.e">
+                                            <field name="NUM">-12</field>
+                                          </shadow>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="text_print" id="L=SdeOqf:{lXEP9BG-(!">
+                            <value name="TEXT">
+                              <shadow type="text" id="i_1GT8@iut,o|vFzGA(P">
+                                <field name="TEXT">This is a messsage from you</field>
+                              </shadow>
+                              <block type="text_join" id="^7E9Yf$w35TmVXq##RGi">
+                                <mutation items="5"></mutation>
+                                <value name="ADD0">
+                                  <block type="variables_get" id="BCILu8iQ!2:6q:S7S+Z7">
+                                    <field name="VAR">月</field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="text" id="ku17~=7(cZ`Vl`7L%mVl">
+                                    <field name="TEXT">月</field>
+                                  </block>
+                                </value>
+                                <value name="ADD2">
+                                  <block type="variables_get" id="hYk~xoaY9iA]x;12g@p^">
+                                    <field name="VAR">日</field>
+                                  </block>
+                                </value>
+                                <value name="ADD3">
+                                  <block type="text" id="7g5-1k6(~W)-DtidOSaU">
+                                    <field name="TEXT">日</field>
+                                  </block>
+                                </value>
+                                <value name="ADD4">
+                                  <block type="text" id="MiAGQS;yr-W1MmMp4jy0">
+                                    <field name="TEXT">ですね！</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
