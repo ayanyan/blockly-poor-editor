@@ -11,10 +11,10 @@
   <script src="blockly/python_compressed.js"></script>
   <script src="jsint/acorn_interpreter.js"></script>
   <script src="filesaver/FileSaver.js"></script>
-  <script src="blocks.js"></script>
   <script src="sweetalert/dist/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css">
   <script src="actions.js"></script>
+  <script src="blocks.js"></script>
   <link rel="stylesheet" href="editor.css">
  </head>
  <body>
@@ -28,12 +28,12 @@
      <textarea id="invisibleArea" class="button" rows="1" cols="12" style="display:none;">answer</textarea>
     </td>
     <td class="farSide">
-     <button class="primary" title="Run the code." onclick="this.blur();runCode(workspace);">Run</button>
-     <button title="Download the JavaScript code." onclick="this.blur();downloadCode('jsCode','js');">Export</button>
-     <button title="Save the blocks as XML." onclick="this.blur();saveBlocks(workspace);">Save</button>
-     <button title="Remove all blocks." onclick="this.blur();clearBlocks(workspace);">Reset</button>
-     <button title="Load the blocks from XML." onclick="this.blur();document.getElementById('file').click();">Load</button>
-     <input id="file" type="file" onchange="loadBlocks(workspace);" style="display:none;" />
+     <button class="primary" title="Execute the code." onclick="this.blur();showcase.runCode();">Run</button>
+     <button title="Download the JavaScript code." onclick="this.blur();downloadCode(showcase.jsElement.id,'js');">Export</button>
+     <button title="Save the blocks as XML." onclick="this.blur();showcase.saveBlocks();">Save</button>
+     <button title="Remove all blocks." onclick="this.blur();showcase.clearBlocks();">Reset</button>
+     <button title="Load blocks from XML." onclick="this.blur();document.getElementById('file').click();">Load</button>
+     <input id="file" type="file" onchange="showcase.loadBlocks(this.id);" style="display:none;" />
      <a id="saveLink" style="display:none;">dummy</a>
     </td>
    </tr>
@@ -206,6 +206,40 @@
      <mutation type="TEXT"></mutation>
      <field name="TYPE">TEXT</field>
      <field name="DIRECTION">1</field></block>
+    </block>
+   </category>
+   <category name="Tables" colour="260">
+    <block type="table_create">
+     <value name="ROW">
+      <shadow type="math_number"><field name="NUM">2</field></shadow>
+     </value>
+     <value name="COL">
+      <shadow type="math_number"><field name="NUM">2</field></shadow>
+     </value>
+    </block>
+    <block type="table_row"></block>
+    <block type="table_col"></block>
+    <block type="table_cell">
+     <value name="TABLE">
+      <shadow type="variables_get"><field name="VAR">table</field></shadow>
+     </value>
+     <value name="ROW">
+      <shadow type="math_number"><field name="NUM">1</field></shadow>
+     </value>
+     <value name="COL">
+      <shadow type="math_number"><field name="NUM">1</field></shadow>
+     </value>
+    </block>
+    <block type="table_setValue">
+     <value name="TABLE">
+      <block type="variables_get"><field name="VAR">table</field></block>
+     </value>
+     <value name="ROW">
+      <shadow type="math_number"><field name="NUM">1</field></shadow>
+     </value>
+     <value name="COL">
+      <shadow type="math_number"><field name="NUM">1</field></shadow>
+     </value>
     </block>
    </category>
    <category name="Interaction" colour="160">
@@ -587,7 +621,7 @@
      <block type="variables_set">
       <field name="VAR">j</field>
       <value name="VALUE">
-       <block type="math_number"><field name="NUM">1</field></block>
+       <block type="math_number"><field name="NUM">2</field></block>
       </value>
       <next>
        <block type="variables_set">
@@ -1084,14 +1118,15 @@
      zoom: {controls: true,
             wheel: true},
      toolbox: document.getElementById('toolbox')});
+  var showcase = new Showcase(workspace, 'jsCode', 'xmlArea', 'initBlocks');
   workspace.addChangeListener(function () {
-    generateCodes(workspace);
+    showcase.generateCodes();
   });
-  autoLoad(workspace);
+  showcase.autoLoad();
   workspace.addChangeListener(function () {
-    autoSave(workspace);
+    showcase.autoSave();
   });
-  var myInterpreter = null;
+  var myInterpreter = new MyInterpreter(workspace);
   </script>
 
  </body>
