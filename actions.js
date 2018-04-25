@@ -1,7 +1,7 @@
 // settings
 
-var useFileSaver = true;
-var useSweetAlert = true;
+var useFileSaver = (typeof(FileSaver.saveAs) != 'undefined');
+var useSweetAlert = (typeof(swal) != 'undefined');
 
 Blockly.JavaScript.addReservedWords('code');
 Blockly.JavaScript.addReservedWords('highlightBlock');
@@ -24,10 +24,11 @@ function smartAlert(m, type) {
     if (type) {
       swal(m, null, type);
     } else {
-      swal(m);
+      return swal(m);
     }
   } else {
     window.alert(m);
+    return (function(f) {});
   }
 }
 
@@ -37,9 +38,12 @@ function alertAndCopy(answer, prefix, suffix) {
     swal({
       title: message,
       text: 'Copy it to clipboard?',
-      showCancelButton: true,
-      type: 'success'
-    }, function(isConfirmed) {
+      icon: 'success',
+      buttons: {
+        cancel: 'Cancel',
+        confirm: 'OK'
+      }
+    }).then(function(isConfirmed) {
       if (isConfirmed) {
         intoClipboard(answer);
       }
@@ -116,16 +120,16 @@ class Showcase {
     }
   }
 
-  initializeWorkspace(isConfirmed) {
-    if (isConfirmed) {
+  regenerateBlocks(dom) {
+    var blocks = dom || Blockly.Xml.textToDom(this.xmlElement.value);
+    if (blocks) {
       this.workspace.clear();
-      Blockly.Xml.domToWorkspace(this.initBlocks, this.workspace);
+      Blockly.Xml.domToWorkspace(blocks, this.workspace);
     }
   }
 
-  saveBlocks() {
-    this.generateCodes();
-    downloadCode(xmlElement.id, 'xml');
+  initializeWorkspace() {
+    this.regenerateBlocks(this.initBlocks);
   }
 
   clearBlocks() {
@@ -134,15 +138,28 @@ class Showcase {
       swal({
         title: 'Workspace will be reset',
         text: 'Really clear all blocks?',
-        showCancelButton: true,
-        type: 'warning'
-      }, function(isConfirmed) {
-        showcase.initializeWorkspace(isConfirmed);
+        icon: 'warning',
+        dangerMode: true,
+        buttons: {
+          cancel: 'Cancel',
+          confirm: 'Clear',
+        }
+      }).then(function(isConfirmed) {
+        if (isConfirmed) {
+          showcase.initializeWorkspace();
+        }
       });
     } else {
       var isConfirmed = window.confirm('Really clear all blocks?');
-      this.initializeWorkspace(isConfirmed);
+      if (isConfirmed) {
+        this.initializeWorkspace();
+      }
     }
+  }
+
+  saveBlocks() {
+    this.generateCodes();
+    downloadCode(this.xmlElement.id, 'xml');
   }
 
   loadBlocks(id) {
@@ -156,9 +173,9 @@ class Showcase {
   }
 
   autoSave() {
-    var xml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace));
+    var xml = this.xmlElement.value;
     try {
-      if (typeof(Storage) !== 'undefined') {
+      if (typeof(Storage) != 'undefined') {
         localStorage.setItem('blocks', xml);
       } else {
         this.putCookie('blocks', xml, 180);
@@ -169,7 +186,7 @@ class Showcase {
   autoLoad() {
     var xml = null;
     try {
-      if (typeof(Storage) !== "undefined") {
+      if (typeof(Storage) != 'undefined') {
         xml = localStorage.getItem('blocks');
       } else {
         xml = getCookie('blocks');
@@ -177,8 +194,9 @@ class Showcase {
     } finally {
       if (xml) {
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), this.workspace);
+        this.generateCodes();
       } else {
-        this.initializeWorkspace(true);
+        this.initializeWorkspace();
       }
     }
   }
@@ -199,14 +217,14 @@ class Showcase {
     var allPieces = document.cookie.split(';');
     for (var i = 0; i < allPieces.length; i++) {
       var piece = allPieces[i];
-      while (piece.charAt(0) == ' ') {
+      while (piece.charAt(0) === ' ') {
         piece = piece.substring(1);
       }
-      if (piece.indexOf(name) == 0) {
+      if (piece.indexOf(name) === 0) {
         value = piece.substring(name.length, piece.length);
       }
     }
-    while (value.charAt(0) == ' ') {
+    while (value.charAt(0) === ' ') {
       value = value.substring(1);
     }
     return decodeURIComponent(value);
@@ -221,7 +239,7 @@ function downloadCode(id, type) {
   var blob = new Blob([text], {type: contentType(type)});
   var url = URL.createObjectURL(blob);
   if (useFileSaver) {
-    saveAs(blob, guessFilename(type));
+    FileSaver.saveAs(blob, guessFilename(type));
   } else {
     try {
       var link = document.getElementById('saveLink');
@@ -230,7 +248,7 @@ function downloadCode(id, type) {
       link.target = '_blank';
       link.click();
     } catch(e) {
-      window.alert('Cannot download.');
+      window.alert('Cannot download');
     }
   }
   URL.revokeObjectURL(url);
@@ -326,7 +344,7 @@ class MyInterpreter {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     Blockly.JavaScript.STATEMENT_PREFIX = null;
     this.interpreter = new Interpreter(code, MyInterpreter.initApi);
-    window.alert('Ready to execute the code.');
+    window.alert('Ready to execute the code');
     highlightPause = false;
     workspace.highlightBlock(null);
   }
@@ -338,7 +356,7 @@ class MyInterpreter {
       ok = this.interpreter.step();
     } finally {
       if (!ok) {
-        window.alert('No more executable block.');
+        window.alert('No more executable block');
         this.workspace.highlightBlock(null);
         return;
       }

@@ -177,5 +177,5 @@ Blockly.JavaScript['table_create'] =
         Blockly.JavaScript.valueToCode(
           block, 'COL', Blockly.JavaScript.ORDER_NONE
         ) || '2';
-    return ['Array(' + row + ').fill(0).map(()=> Array(' + col + ').fill(0))', Blockly.JavaScript.ORDER_MEMBER];
+    return ['Array(' + row + ').fill(0).map((x)=> Array(' + col + ').fill(0))', Blockly.JavaScript.ORDER_MEMBER];
   };

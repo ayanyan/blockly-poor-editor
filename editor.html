@@ -10,9 +10,8 @@
   <script src="blockly/javascript_compressed.js"></script>
   <script src="blockly/python_compressed.js"></script>
   <script src="jsint/acorn_interpreter.js"></script>
-  <script src="filesaver/FileSaver.js"></script>
-  <script src="sweetalert/dist/sweetalert.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css">
+  <script src="file-saver/FileSaver.min.js"></script>
+  <script src="sweetalert/sweetalert.min.js"></script>
   <script src="actions.js"></script>
   <script src="blocks.js"></script>
   <link rel="stylesheet" href="editor.css">
@@ -22,9 +21,9 @@
   <table id="sandbox">
    <tr id="menu">
     <td>
-     <button onclick="this.blur();showPane('blocklyPane');">Blockly</button>
+     <button onclick="this.blur();showPane('blocklyPane');showcase.regenerateBlocks()">Blockly</button>
      <button onclick="this.blur();showPane('jsPane');">JavaScript</button>
-     <button onclick="this.blur();showPane('xmlPane');">XML</button>
+     <button onclick="this.blur();showcase.generateCodes();showPane('xmlPane');">XML</button>
      <textarea id="invisibleArea" class="button" rows="1" cols="12" style="display:none;">answer</textarea>
     </td>
     <td class="farSide">
@@ -1119,11 +1118,9 @@
             wheel: true},
      toolbox: document.getElementById('toolbox')});
   var showcase = new Showcase(workspace, 'jsCode', 'xmlArea', 'initBlocks');
-  workspace.addChangeListener(function () {
-    showcase.generateCodes();
-  });
   showcase.autoLoad();
   workspace.addChangeListener(function () {
+    showcase.generateCodes();
     showcase.autoSave();
   });
   var myInterpreter = new MyInterpreter(workspace);

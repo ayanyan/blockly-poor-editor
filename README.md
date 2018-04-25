@@ -1,7 +1,8 @@
-# A Blockly editor
+# A Blockly Editor
 
 This software provides a web-based programming environment for a novice.
-The main language is Blockly.
+The target programming language is Blockly.
+Since Blockly is highly customizable, your original languages can be used in this editor.
 
 ## Quick Start
 
@@ -10,6 +11,14 @@ The main language is Blockly.
 2. Run `make install`.
 
 3. Just load editor.html in your browser.
+
+## Extensions
+
+Additional libraries make our editor richer.
+
+- SweetAlert --- enables richer modal dialog.
+
+- FileSaver.js --- enables unsupported browsers to save files.
 
 ## Copyright Notice
 
