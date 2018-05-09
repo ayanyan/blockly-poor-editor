@@ -46,7 +46,7 @@ Blockly.JavaScript['number_2_text'] =
 Blockly.defineBlocksWithJsonArray([
   {
     "type": 'table_row',
-    "message0": 'rows of %1',
+    "message0": 'height of %1',
     "args0": [
       {"type": 'input_value', "name": 'TABLE', "check": "Array"},
     ],
@@ -56,7 +56,7 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     "type": 'table_col',
-    "message0": 'columns of %1',
+    "message0": 'width of %1',
     "args0": [
       {"type": 'input_value', "name": 'TABLE', "check": "Array"},
     ],
@@ -66,7 +66,7 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     "type": 'table_cell',
-    "message0": 'cell at row %2 col %3 in %1',
+    "message0": 'in table %1 get cell at row %2 col %3',
     "args0": [
       {"type": 'input_value', "name": 'TABLE', "check": "Array"},
       {"type": 'input_value', "name": 'ROW', "check": 'Number'},
@@ -79,7 +79,7 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     "type": 'table_setValue',
-    "message0": 'change cell to %4 at row %2 col %3 in %1',
+    "message0": 'in table %1 change cell to %4 at row %2 col %3',
     "args0": [
       {"type": 'input_value', "name": 'TABLE', "check": 'Array'},
       {"type": 'input_value', "name": 'ROW', "check": 'Number'},
@@ -94,7 +94,7 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     "type": 'table_create',
-    "message0": 'create table as rows %1 columns %2',
+    "message0": 'create table as height %1 width %2',
     "args0": [
       {"type": 'input_value', "name": 'ROW', "check": 'Number'},
       {"type": 'input_value', "name": 'COL', "check": 'Number'},

@@ -22,16 +22,16 @@
    <tr id="menu">
     <td>
      <button onclick="this.blur();showPane('blocklyPane');showcase.regenerateBlocks()">Blockly</button>
-     <button onclick="this.blur();showPane('jsPane');">JavaScript</button>
      <button onclick="this.blur();showcase.generateCodes();showPane('xmlPane');">XML</button>
-     <textarea id="invisibleArea" class="button" rows="1" cols="12" style="display:none;">answer</textarea>
+     <button onclick="this.blur();showPane('jsPane');">JavaScript</button>
+     <textarea id="invisibleArea" class="button" rows="1" cols="12" style="display:none;">Result</textarea>
     </td>
     <td class="farSide">
      <button class="primary" title="Execute the code." onclick="this.blur();showcase.runCode();">Run</button>
-     <button title="Download the JavaScript code." onclick="this.blur();downloadCode(showcase.jsElement.id,'js');">Export</button>
-     <button title="Save the blocks as XML." onclick="this.blur();showcase.saveBlocks();">Save</button>
      <button title="Remove all blocks." onclick="this.blur();showcase.clearBlocks();">Reset</button>
+     <button title="Save the blocks as XML." onclick="this.blur();showcase.saveBlocks();">Save</button>
      <button title="Load blocks from XML." onclick="this.blur();document.getElementById('file').click();">Load</button>
+     <button title="Download the JavaScript code." onclick="this.blur();downloadCode(showcase.jsElement.id,'js');">Export</button>
      <input id="file" type="file" onchange="showcase.loadBlocks(this.id);" style="display:none;" />
      <a id="saveLink" style="display:none;">dummy</a>
     </td>
