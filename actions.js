@@ -90,11 +90,12 @@ function showPane(id) {
 
 class Showcase {
 
-  constructor(workspace, js, xml, blocks) {
+  constructor(workspace, js, xml, blocks, name) {
     this.workspace = workspace;
     this.jsElement = document.getElementById(js);
     this.xmlElement = document.getElementById(xml);
     this.initBlocks = document.getElementById(blocks);
+    this.name = name || 'blocklyblocks';
   }
 
   generateCodes() {
@@ -176,9 +177,9 @@ class Showcase {
     var xml = this.xmlElement.value;
     try {
       if (typeof(Storage) != 'undefined') {
-        localStorage.setItem('blocks', xml);
+        localStorage.setItem(this.name, xml);
       } else {
-        this.putCookie('blocks', xml, 180);
+        this.putCookie(this.name, xml, 180);
       }
     } finally {}
   }
@@ -187,9 +188,9 @@ class Showcase {
     var xml = null;
     try {
       if (typeof(Storage) != 'undefined') {
-        xml = localStorage.getItem('blocks');
+        xml = localStorage.getItem(this.name);
       } else {
-        xml = getCookie('blocks');
+        xml = getCookie(this.name);
       }
     } finally {
       if (xml) {
