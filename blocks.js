@@ -40,7 +40,7 @@ Blockly.JavaScript['number_2_text'] =
         Blockly.JavaScript.valueToCode(
           block, 'VALUE', Blockly.JavaScript.ORDER_NONE
         ) || '0';
-    return ['(' + arg + ').toString()', Blockly.JavaScript.ORDER_MEMBER];
+    return ['String(' + arg + ')', Blockly.JavaScript.ORDER_FUNCTION_CALL];
   };
 
 Blockly.defineBlocksWithJsonArray([
