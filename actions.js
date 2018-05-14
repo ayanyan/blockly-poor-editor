@@ -207,13 +207,13 @@ class Showcase {
     var expires = (days * 24 * 60 * 60).toString();
     var path = '/';
     document.cookie =
-      encodeURIComponent(key) + "=" + encodeURIComponent(value) + "; " +
+      encodeURIComponent(key) + '=' + encodeURIComponent(value) + '; ' +
       'max-age=' + expires + '; ' +
       'path=' + path + ';';
   }
 
   getCookie(key) {
-    var name = encodeURIComponent(key) + "=";
+    var name = encodeURIComponent(key) + '=';
     var value = '';
     var allPieces = document.cookie.split(';');
     for (var i = 0; i < allPieces.length; i++) {
