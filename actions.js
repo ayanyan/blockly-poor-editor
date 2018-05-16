@@ -100,7 +100,7 @@ class Showcase {
 
   generateCodes() {
     Blockly.JavaScript.INFINITE_LOOP_TRAP =
-      'if (--window.LoopTrap == 0) throw "Maybe infinite loop!";\n';
+      'if (--window.LoopTrap < 0) throw "Maybe infinite loop!";\n';
     this.jsElement.value = Blockly.JavaScript.workspaceToCode(this.workspace);
     this.xmlElement.value = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.workspace));
     Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
