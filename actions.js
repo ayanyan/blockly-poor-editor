@@ -181,7 +181,9 @@ class Showcase {
       } else {
         this.putCookie(this.name, xml, 180);
       }
-    } finally {}
+    } catch(e) {
+    } finally {
+    }
   }
 
   autoLoad() {
@@ -192,6 +194,7 @@ class Showcase {
       } else {
         xml = getCookie(this.name);
       }
+    } catch(e) {
     } finally {
       if (xml) {
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), this.workspace);
@@ -199,6 +202,18 @@ class Showcase {
       } else {
         this.initializeWorkspace();
       }
+    }
+  }
+
+  clearCache() {
+    try {
+      if (typeof(Storage) != 'undefined') {
+        localStorage.removeItem(this.name);
+      } else {
+        this.putCookie(this.name, '', 180);
+      }
+    } catch(e) {
+    } finally {
     }
   }
 
@@ -355,6 +370,8 @@ class MyInterpreter {
     var ok = false;
     try {
       ok = this.interpreter.step();
+    } catch(e) {
+      console.log('interpreter fails');
     } finally {
       if (!ok) {
         window.alert('No more executable block');
