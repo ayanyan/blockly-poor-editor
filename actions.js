@@ -130,6 +130,7 @@ class Showcase {
   }
 
   initializeWorkspace() {
+    this.clearCache();
     this.regenerateBlocks(this.initBlocks);
   }
 
@@ -197,7 +198,7 @@ class Showcase {
     } catch(e) {
     } finally {
       if (xml) {
-        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), this.workspace);
+        this.regenerateBlocks(Blockly.Xml.textToDom(xml));
         this.generateCodes();
       } else {
         this.initializeWorkspace();

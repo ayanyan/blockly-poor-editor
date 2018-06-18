@@ -1,3 +1,12 @@
+// Blockly.Msg.LOGIC_HUE = '210';
+// Blockly.Msg.LOOPS_HUE = '120';
+// Blockly.Msg.MATH_HUE = '230';
+// Blockly.Msg.TEXTS_HUE = '160';
+// Blockly.Msg.LISTS_HUE = '260';
+// Blockly.Msg.COLOUR_HUE = '20';
+// Blockly.Msg.VARIABLES_HUE = '330';
+// Blockly.Msg.VARIABLES_DYNAMIC_HUE = '310';
+// Blockly.Msg.PROCEDURES_HUE = '290';
 var myTextsColour = Blockly.Msg.TEXTS_HUE || Blockly.Constants.Text.HUE || 160;
 var myNumColour = Blockly.Msg.MATH_HUE || Blockly.Constants.Math.HUE || 230;
 var myListColour = Blockly.Msg.LISTS_HUE || Blockly.Constants.Lists.HUE || 260;
